@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Math-Wizards/static/css/main.cc2de04f.css",
-    "main.js": "/Math-Wizards/static/js/main.987ad62a.js",
+    "main.css": "/Math-Wizards/static/css/main.9fdbb4bb.css",
+    "main.js": "/Math-Wizards/static/js/main.cdddf6a8.js",
     "static/js/453.29c55255.chunk.js": "/Math-Wizards/static/js/453.29c55255.chunk.js",
     "static/media/logo.svg": "/Math-Wizards/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Math-Wizards/index.html",
-    "main.cc2de04f.css.map": "/Math-Wizards/static/css/main.cc2de04f.css.map",
-    "main.987ad62a.js.map": "/Math-Wizards/static/js/main.987ad62a.js.map",
+    "main.9fdbb4bb.css.map": "/Math-Wizards/static/css/main.9fdbb4bb.css.map",
+    "main.cdddf6a8.js.map": "/Math-Wizards/static/js/main.cdddf6a8.js.map",
     "453.29c55255.chunk.js.map": "/Math-Wizards/static/js/453.29c55255.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc2de04f.css",
-    "static/js/main.987ad62a.js"
+    "static/css/main.9fdbb4bb.css",
+    "static/js/main.cdddf6a8.js"
   ]
 }
