@@ -48,6 +48,14 @@ A web application built with Base44 to help you learn Math through interactive q
 #### Game
 
 <img src='./src/images/screenshot_5.png' width='700'/>
+
+#### Adventure
+
+<img src='./src/images/screenshot_6.png' width='700'/>
+
+#### Level
+
+<img src='./src/images/screenshot_7.png' width='700'/>
 <br><br>
 
 ## 💻 Installation

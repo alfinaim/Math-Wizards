@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import DifficultySelector from '../components/math/DifficultySelector';
 import QuestionCard from '../components/math/QuestionCard';
 import ScoreDisplay from '../components/math/ScoreDisplay';
 import ResultsScreen from '../components/math/ResultsScreen';
-import { storage } from '../components/utils/Storage';
-import { useLocation } from 'react-router-dom';
+import { storage } from '../components/utils/storage';
 
 const TOTAL_QUESTIONS = 10;
 
 export default function Game() {
-
+    const navigate = useNavigate();
     const location = useLocation();
     const urlParams = new URLSearchParams(location.search);
     const operation = urlParams.get('operation');
     const mode = urlParams.get('mode');
-    const navigate = useNavigate();
 
     const [difficulty, setDifficulty] = useState(null);
     const [questions, setQuestions] = useState([]);
@@ -68,13 +66,23 @@ export default function Game() {
                 num1 = answer * num2;
                 break;
             case 'fractions':
-                operator = '+';
-                const denom = diff === 'easy' ? 4 : diff === 'medium' ? 8 : 12;
-                num1 = `${Math.floor(Math.random() * denom)}/4`;
-                num2 = `${Math.floor(Math.random() * denom)}/4`;
-                const [n1, d1] = num1.split('/').map(Number);
-                const [n2, d2] = num2.split('/').map(Number);
-                answer = ((n1 + n2) / d1).toFixed(2);
+                const denominators = diff === 'easy' ? [2, 4, 5] : diff === 'medium' ? [2, 3, 4, 5, 6] : [2, 3, 4, 5, 6, 8, 10];
+                const denom = denominators[Math.floor(Math.random() * denominators.length)];
+                const fractionOps = ['+', '-'];
+                operator = fractionOps[Math.floor(Math.random() * fractionOps.length)];
+                const frac1Num = Math.floor(Math.random() * (denom - 1)) + 1;
+                const frac2Num = Math.floor(Math.random() * (denom - 1)) + 1;
+                num1 = `${frac1Num}/${denom}`;
+                num2 = `${frac2Num}/${denom}`;
+                if (operator === '+') {
+                    answer = ((frac1Num + frac2Num) / denom).toFixed(2);
+                } else {
+                    const bigger = Math.max(frac1Num, frac2Num);
+                    const smaller = Math.min(frac1Num, frac2Num);
+                    num1 = `${bigger}/${denom}`;
+                    num2 = `${smaller}/${denom}`;
+                    answer = ((bigger - smaller) / denom).toFixed(2);
+                }
                 break;
             case 'decimals':
                 operator = '+';
@@ -181,7 +189,7 @@ export default function Game() {
                 <Button
                     onClick={() => navigate('/Home')}
                     variant="outline"
-                    className="mb-6 rounded-xl border-2 border-purple-300 hover:bg-white"
+                    className="mb-6 rounded-xl border-2 border-purple-300 hover:bg-gray-100 bg-white"
                 >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back Home

@@ -25,8 +25,14 @@ export default function AvatarSelector({ currentCharacter, currentColor, onSave 
   const [selectedCharacter, setSelectedCharacter] = useState(currentCharacter || 'robot');
   const [selectedColor, setSelectedColor] = useState(currentColor || 'blue');
 
+  // Update state when props change (e.g., when data loads from storage)
+  React.useEffect(() => {
+    if (currentCharacter) setSelectedCharacter(currentCharacter);
+    if (currentColor) setSelectedColor(currentColor);
+  }, [currentCharacter, currentColor]);
+
   return (
-    <Card className="p-6 max-w-2xl mx-auto">
+    <Card className="p-6 max-w-2xl mx-auto bg-white">
       <h2 className="text-2xl font-bold text-center mb-6">Customize Your Avatar 🎨</h2>
       
       <div className="mb-6">
@@ -70,7 +76,7 @@ export default function AvatarSelector({ currentCharacter, currentColor, onSave 
 
       <Button
         onClick={() => onSave(selectedCharacter, selectedColor)}
-        className="w-full h-14 text-xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+        className="text-white w-full h-14 text-xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
       >
         Save Avatar ✨
       </Button>

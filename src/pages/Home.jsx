@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import OperationCard from '../components/math/OperationCard';
 import AvatarDisplay from '../components/avatar/AvatarDisplay';
 import { BookOpen, Sparkles, BarChart3, User, Clock } from 'lucide-react';
-import { storage } from '../components/utils/Storage';
+import { storage } from '../components/utils/storage';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default function Home() {
           <Button
             onClick={() => navigate('/AvatarCustomize')}
             variant="outline"
-            className="rounded-xl border-2 border-purple-300 hover:bg-white"
+            className="rounded-xl border-2 border-purple-300 bg-white hover:bg-gray-100"
           >
             <User className="w-4 h-4 mr-2" />
             Customize Avatar
@@ -43,7 +43,7 @@ export default function Home() {
           <Button
             onClick={() => navigate('/Stats')}
             variant="outline"
-            className="rounded-xl border-2 border-purple-300 hover:bg-white"
+            className="rounded-xl border-2 border-purple-300 bg-white hover:bg-gray-100"
           >
             <BarChart3 className="w-4 h-4 mr-2" />
             View Stats
@@ -97,18 +97,32 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-12 space-y-4"
+          className="text-center mt-12"
         >
-          <Button
-            onClick={() => navigate('/Game?mode=timed')}
-            className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-xl px-8 py-6 rounded-2xl shadow-xl"
-          >
-            <Clock className="w-6 h-6 mr-2" />
-            Timed Challenge ⏱️
-          </Button>
-          <div className="inline-block bg-white rounded-full px-8 py-4 shadow-lg ml-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <Button
+              onClick={() => navigate('/Adventure')}
+              className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold text-xl px-8 py-6 rounded-2xl shadow-xl"
+            >
+              🗺️ Adventure Mode
+            </Button>
+            <Button
+              onClick={() => navigate('/EndlessMode')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold text-xl px-8 py-6 rounded-2xl shadow-xl"
+            >
+              ♾️ Endless Mode
+            </Button>
+            <Button
+              onClick={() => navigate('/Game?mode=timed')}
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold text-xl px-8 py-6 rounded-2xl shadow-xl"
+            >
+              <Clock className="w-6 h-6 mr-2" />
+              Timed Challenge
+            </Button>
+          </div>
+          <div className="inline-block bg-white rounded-full px-8 py-4 shadow-lg">
             <p className="text-lg text-gray-600 font-semibold">
-              💡 Pick an operation to get started!
+              🎮 Choose a game mode or pick an operation above!
             </p>
           </div>
         </motion.div>

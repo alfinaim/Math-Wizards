@@ -6,7 +6,7 @@ import { Card } from '../components/ui/card';
 import { ArrowLeft, Trophy, Target, Zap, Star, Award } from 'lucide-react';
 import StatsCard from '../components/stats/StatsCard';
 import AvatarDisplay from '../components/avatar/AvatarDisplay';
-import { storage } from '../components/utils/Storage';
+import { storage } from '../components/utils/storage';
 
 export default function Stats() {
   const navigate = useNavigate();
@@ -31,7 +31,9 @@ export default function Stats() {
     addition: progressData.filter(p => p.operation === 'addition'),
     subtraction: progressData.filter(p => p.operation === 'subtraction'),
     multiplication: progressData.filter(p => p.operation === 'multiplication'),
-    division: progressData.filter(p => p.operation === 'division')
+    division: progressData.filter(p => p.operation === 'division'),
+    fractions: progressData.filter(p => p.operation === 'fractions'),
+    decimals: progressData.filter(p => p.operation === 'decimals')
   };
 
   return (
@@ -40,14 +42,14 @@ export default function Stats() {
         <Button
           onClick={() => navigate('/Home')}
           variant="outline"
-          className="mb-6 rounded-xl border-2 border-purple-300 hover:bg-white"
+          className="mb-6 rounded-xl border-2 border-purple-300 bg-white hover:bg-gray-100"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back Home
         </Button>
 
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Your Progress 📊</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Your Progress 🏆</h1>
           <div className="flex justify-center mb-6">
             <AvatarDisplay 
               character={avatar?.selected_character} 
@@ -67,7 +69,7 @@ export default function Stats() {
           <StatsCard icon={Trophy} title="Correct Answers" value={totalCorrect} color="border-pink-300" delay={0.5} />
         </div>
 
-        <Card className="p-6 mb-8">
+        <Card className="p-6 mb-8 bg-white">
           <h2 className="text-2xl font-bold mb-4">Performance by Operation</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Object.entries(operationStats).map(([op, data]) => {
@@ -82,6 +84,8 @@ export default function Stats() {
                     {op === 'subtraction' && '➖'}
                     {op === 'multiplication' && '✖️'}
                     {op === 'division' && '➗'}
+                    {op === 'fractions' && '🍕'}
+                    {op === 'decimals' && '🔢'}
                   </div>
                   <p className="text-sm font-semibold text-gray-600 capitalize">{op}</p>
                   <p className="text-2xl font-bold text-purple-600">{opAccuracy}%</p>

@@ -8,6 +8,9 @@ import Home from './pages/Home';
 import Game from './pages/Game';
 import AvatarCustomize from './pages/AvatarCustomize';
 import Stats from './pages/Stats';
+import Adventure from './pages/Adventure';
+import AdventureGame from './pages/AdventureGame';
+import EndlessMode from './pages/EndlessMode';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,8 +20,11 @@ root.render(
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="game" element={<Game />} />
-          <Route path="AvatarCustomize" element={<AvatarCustomize />} />
+          <Route path="avatarCustomize" element={<AvatarCustomize />} />
           <Route path="stats" element={<Stats />} />
+          <Route path="adventure" element={<Adventure />} />
+          <Route path="adventureGame" element={<AdventureGame />} />
+          <Route path="endlessMode" element={<EndlessMode />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

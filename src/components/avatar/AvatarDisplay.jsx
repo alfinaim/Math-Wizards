@@ -8,7 +8,7 @@ const avatarEmojis = {
   superhero: '🦸',
   scientist: '👨‍🔬',
   artist: '👨‍🎨'
-}; 
+};
 
 const colorClasses = {
   blue: 'bg-blue-500',

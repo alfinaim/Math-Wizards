@@ -42,12 +42,45 @@ export const storage = {
 
   addReward: (reward) => {
     const current = storage.getRewards();
+    // Check if reward already exists
+    if (current.some(r => r.id === reward.id)) return null;
     const newReward = {
       ...reward,
-      id: Date.now().toString(),
       earned_date: new Date().toISOString()
     };
     localStorage.setItem('math_rewards', JSON.stringify([...current, newReward]));
     return newReward;
+  },
+
+  // Adventure Progress
+  getAdventure: () => {
+    const data = localStorage.getItem('math_adventure');
+    return data ? JSON.parse(data) : {
+      currentWorld: 1,
+      currentLevel: 1,
+      defeatedBosses: [],
+      unlockedWorlds: [1],
+      totalXP: 0
+    };
+  },
+
+  saveAdventure: (adventure) => {
+    localStorage.setItem('math_adventure', JSON.stringify(adventure));
+    return adventure;
+  },
+
+  // Endless Mode High Score
+  getEndlessHighScore: () => {
+    const data = localStorage.getItem('math_endless_highscore');
+    return data ? JSON.parse(data) : 0;
+  },
+
+  saveEndlessHighScore: (score) => {
+    const current = storage.getEndlessHighScore();
+    if (score > current) {
+      localStorage.setItem('math_endless_highscore', JSON.stringify(score));
+      return score;
+    }
+    return current;
   }
 };

@@ -14,8 +14,16 @@ export default function QuestionCard({ question, onAnswer, questionNumber, total
     e.preventDefault();
     if (answer === '') return;
 
-    const userAnswer = parseInt(answer);
-    const isCorrect = userAnswer === question.answer;
+    let userAnswer = answer;
+    // Handle fraction input like "3/4"
+    if (answer.includes('/')) {
+      const [num, denom] = answer.split('/').map(Number);
+      userAnswer = denom ? num / denom : NaN;
+    } else {
+      userAnswer = parseFloat(answer);
+    }
+    const correctAnswer = parseFloat(question.answer);
+    const isCorrect = !isNaN(userAnswer) && Math.abs(userAnswer - correctAnswer) < 0.01;
     
     setFeedback(isCorrect);
     
@@ -63,19 +71,26 @@ export default function QuestionCard({ question, onAnswer, questionNumber, total
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <Input
-            type="number"
+            type="text"
+            inputMode="decimal"
             value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '' || val === '-' || /^-?\d*[./]?\d*$/.test(val)) {
+                setAnswer(val);
+              }
+            }}
             placeholder="Type your answer..."
             className="text-4xl text-center h-20 rounded-2xl border-4 border-purple-200 focus:border-purple-400"
             autoFocus
             disabled={feedback !== null}
+            ref={(input) => input && feedback === null && input.focus()}
           />
 
           <Button
             type="submit"
             disabled={answer === '' || feedback !== null}
-            className="w-full h-16 text-2xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="w-full h-16 text-2xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
           >
             Submit Answer! 🚀
           </Button>

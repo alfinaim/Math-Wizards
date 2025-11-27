@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import AvatarSelector from '../components/avatar/AvatarSelector';
-import { storage } from '../components/utils/Storage';
+import { storage } from '../components/utils/storage';
 
 export default function AvatarCustomize() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function AvatarCustomize() {
         <Button
           onClick={() => navigate('/Home')}
           variant="outline"
-          className="mb-6 rounded-xl border-2 border-purple-300 hover:bg-white"
+          className="mb-6 rounded-xl border-2 border-purple-300 bg-white hover:bg-gray-100"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back Home

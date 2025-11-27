@@ -75,7 +75,7 @@ export default function ResultsScreen({ score, correct, total, onPlayAgain, onHo
         <div className="flex gap-4">
           <Button
             onClick={onPlayAgain}
-            className="flex-1 h-14 text-xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="text-white flex-1 h-14 text-xl font-bold rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
           >
             <RotateCcw className="w-5 h-5 mr-2" />
             Play Again
@@ -83,7 +83,7 @@ export default function ResultsScreen({ score, correct, total, onPlayAgain, onHo
           <Button
             onClick={onHome}
             variant="outline"
-            className="flex-1 h-14 text-xl font-bold rounded-2xl border-4 border-purple-300"
+            className="flex-1 h-14 text-xl font-bold rounded-2xl border-4 border-purple-300 hover:bg-gray-100"
           >
             <Home className="w-5 h-5 mr-2" />
             Home
